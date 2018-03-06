@@ -26,4 +26,8 @@ dependencies {
     implementation "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintLayoutVersion"
     testImplementation "junit:junit:$rootProject.ext.junitVersion"
     implementation project(':demo-library')
+
+    // dagger2
+    implementation 'com.google.dagger:dagger:2.14.1'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.14.1'
 }

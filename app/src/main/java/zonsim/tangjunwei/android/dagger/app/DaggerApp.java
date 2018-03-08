@@ -1,7 +1,8 @@
-package zonsim.tangjunwei.android.dagger;
+package zonsim.tangjunwei.android.dagger.app;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
+
 
 /**
  * desc
@@ -13,8 +14,20 @@ import android.app.Application;
 
 @SuppressLint("Registered")
 public class DaggerApp extends Application {
+    
+    private AppComponent mAppComponent;
+    
     @Override
     public void onCreate() {
         super.onCreate();
+        
+        mAppComponent = DaggerAppComponent.builder()
+                .appModule(new AppModule(this))
+                .build();
+        
+    }
+    
+    public AppComponent getAppComponent() {
+        return mAppComponent;
     }
 }

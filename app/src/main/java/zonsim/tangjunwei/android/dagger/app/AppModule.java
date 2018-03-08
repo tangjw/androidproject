@@ -1,4 +1,4 @@
-package zonsim.tangjunwei.android.dagger;
+package zonsim.tangjunwei.android.dagger.app;
 
 import android.app.Application;
 
@@ -6,6 +6,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import zonsim.tangjunwei.android.dagger.util.Validator;
 
 /**
  * desc
@@ -18,7 +19,7 @@ import dagger.Provides;
 @Module
 public class AppModule {
     
-    Application mApplication;
+    private Application mApplication;
     
     public AppModule(Application application) {
         mApplication = application;
@@ -29,4 +30,11 @@ public class AppModule {
     Application providesApplication() {
         return mApplication;
     }
+    
+    @Provides
+    @Singleton
+    Validator providesValidator() {
+        return new Validator();
+    }
+    
 }

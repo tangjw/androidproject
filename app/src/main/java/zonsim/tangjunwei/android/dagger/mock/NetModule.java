@@ -1,4 +1,4 @@
-package zonsim.tangjunwei.android.dagger;
+package zonsim.tangjunwei.android.dagger.mock;
 
 import android.app.Application;
 import android.content.SharedPreferences;

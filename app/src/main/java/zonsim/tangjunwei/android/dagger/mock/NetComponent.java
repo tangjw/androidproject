@@ -1,9 +1,10 @@
-package zonsim.tangjunwei.android.dagger;
+package zonsim.tangjunwei.android.dagger.mock;
 
 import javax.inject.Singleton;
 
 import dagger.Component;
-import zonsim.tangjunwei.android.MainActivity;
+import zonsim.tangjunwei.android.dagger.activity.MainActivity;
+import zonsim.tangjunwei.android.dagger.app.AppModule;
 
 /**
  * desc

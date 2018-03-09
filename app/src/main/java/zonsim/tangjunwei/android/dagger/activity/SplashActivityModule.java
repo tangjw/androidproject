@@ -5,6 +5,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import zonsim.tangjunwei.android.dagger.net.UserManager;
+import zonsim.tangjunwei.android.dagger.scope.ActivityScope;
 import zonsim.tangjunwei.android.dagger.util.Validator;
 
 /**
@@ -25,13 +26,13 @@ public class SplashActivityModule {
     }
     
     @Provides
-    @Singleton
+    @ActivityScope
     SplashActivity providesSplashActivity() {
         return mSplashActivity;
     }
     
     @Provides
-    @Singleton
+    @ActivityScope
     SplashActivityPresenter providesSplashActivityPresenter(Validator validator, UserManager userManager) {
         return new SplashActivityPresenter(mSplashActivity, validator, userManager);
     }

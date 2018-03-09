@@ -4,7 +4,11 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import zonsim.tangjunwei.android.dagger.activity.SplashActivity;
+import zonsim.tangjunwei.android.dagger.activity.SplashActivityComponent;
+import zonsim.tangjunwei.android.dagger.activity.SplashActivityModule;
 import zonsim.tangjunwei.android.dagger.net.GithubApiModule;
+import zonsim.tangjunwei.android.dagger.net.UserComponent;
+import zonsim.tangjunwei.android.dagger.net.UserModule;
 
 /**
  * desc
@@ -18,8 +22,8 @@ import zonsim.tangjunwei.android.dagger.net.GithubApiModule;
 @Component(modules = {AppModule.class, GithubApiModule.class})
 public interface AppComponent {
     
-    //    SplashActivityComponent plus(SplashActivityModule splashActivityModule);
-//    
-//    UserComponent plus(UserModule userModule);
-    void inject(SplashActivity splashActivity);
+    SplashActivityComponent plus(SplashActivityModule splashActivityModule);
+    
+    UserComponent plus(UserModule userModule);
+//    void inject(SplashActivity splashActivity);
 }

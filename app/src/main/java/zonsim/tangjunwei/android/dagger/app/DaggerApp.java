@@ -1,7 +1,10 @@
 package zonsim.tangjunwei.android.dagger.app;
 
-import android.annotation.SuppressLint;
 import android.app.Application;
+
+import zonsim.tangjunwei.android.dagger.net.UserComponent;
+import zonsim.tangjunwei.android.dagger.net.UserModule;
+import zonsim.tangjunwei.android.dagger.net.model.User;
 
 
 /**
@@ -12,10 +15,10 @@ import android.app.Application;
  * Created by company-pc on 2018/3/8.
  */
 
-@SuppressLint("Registered")
 public class DaggerApp extends Application {
     
     private AppComponent mAppComponent;
+    private UserComponent mUserComponent;
     
     @Override
     public void onCreate() {
@@ -30,4 +33,17 @@ public class DaggerApp extends Application {
     public AppComponent getAppComponent() {
         return mAppComponent;
     }
+    
+    public UserComponent createUserComponent(User user) {
+        mUserComponent = mAppComponent.plus(new UserModule(user));
+        return mUserComponent;
+    }
+    
+    public void releaseUserComponent() {
+        mUserComponent = null;
+    }
+    public UserComponent getUserComponent() {
+        return mUserComponent;
+    }
+    
 }

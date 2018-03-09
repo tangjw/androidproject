@@ -2,10 +2,13 @@ package zonsim.tangjunwei.android.dagger.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import javax.inject.Inject;
 
 import zonsim.tangjunwei.android.R;
 import zonsim.tangjunwei.android.dagger.app.DaggerApp;
@@ -25,11 +28,15 @@ public class SplashActivity extends BaseActivity {
     ProgressBar pbLoading;
     Button btnShowRepositories;
     
-    
+    @Inject
+    SplashActivityPresenter presenter;
     
     @Override
     protected void setupComponent() {
-    
+        DaggerApp application = (DaggerApp) getApplication();
+        application.getAppComponent()
+                .plus(new SplashActivityModule(this))
+                .inject(this);
     }
     
     @Override
@@ -38,10 +45,18 @@ public class SplashActivity extends BaseActivity {
         etUsername = findViewById(R.id.etUsername);
         pbLoading = findViewById(R.id.pbLoading);
         btnShowRepositories = findViewById(R.id.btnShowRepositories);
+        
+        btnShowRepositories.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.username = etUsername.getText().toString();
+                presenter.onShowRepositoryClick();
+            }
+        });
     }
     
     public void showLoading(boolean b) {
-        Toast.makeText(this, b ? "..." : "===", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, b ? "搜索中..." : "===", Toast.LENGTH_SHORT).show();
     }
     
     public void showValidationError() {
@@ -49,7 +64,6 @@ public class SplashActivity extends BaseActivity {
     }
     
     public void showRepositoryListForUser(User user) {
-        DaggerApp application = (DaggerApp) getApplication();
-        
+        System.out.println("user name: " + user.login);
     }
 }

@@ -3,6 +3,7 @@ package zonsim.tangjunwei.android.dagger.net;
 import javax.inject.Singleton;
 
 import dagger.Subcomponent;
+import zonsim.tangjunwei.android.dagger.scope.UserScope;
 
 /**
  * desc
@@ -12,7 +13,7 @@ import dagger.Subcomponent;
  * Created by home-pc on 2018/3/8.
  */
 
-@Singleton
+@UserScope
 @Subcomponent(modules = UserModule.class)
 public interface UserComponent {
     

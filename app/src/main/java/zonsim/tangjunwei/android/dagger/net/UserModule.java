@@ -5,6 +5,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import zonsim.tangjunwei.android.dagger.net.model.User;
+import zonsim.tangjunwei.android.dagger.scope.UserScope;
 
 /**
  * desc
@@ -23,7 +24,7 @@ public class UserModule {
         mUser = user;
     }
     
-    @Singleton
+    @UserScope
     @Provides
     User providesUser() {
         return new User();

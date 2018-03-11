@@ -1,7 +1,5 @@
 package zonsim.tangjunwei.android.dagger.activity;
 
-import javax.inject.Singleton;
-
 import dagger.Subcomponent;
 import zonsim.tangjunwei.android.dagger.scope.ActivityScope;
 

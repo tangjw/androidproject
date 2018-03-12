@@ -1,12 +1,10 @@
 package zonsim.tangjunwei.android.net;
 
-import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
 import retrofit2.Retrofit;
-import zonsim.tangjunwei.app.BaseAppModule;
 import zonsim.tangjunwei.network.di.RetrofitModule;
 
 /**
@@ -22,7 +20,7 @@ public class ApiServiceModule {
     
     @Singleton
     @Provides
-    ApiService provideApiService(@Named("with_auth") Retrofit retrofit) {
+    ApiService provideApiService(Retrofit retrofit) {
         return retrofit.create(ApiService.class);
     }
     

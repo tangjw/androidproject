@@ -1,5 +1,10 @@
 package zonsim.tangjunwei.android.net;
 
+import io.reactivex.Observable;
+import retrofit2.http.GET;
+import zonsim.tangjunwei.android.net.entity.HomeResp;
+import zonsim.tangjunwei.network.api.ApiResponse;
+
 /**
  * desc
  *
@@ -9,5 +14,6 @@ package zonsim.tangjunwei.android.net;
  */
 
 public interface ApiService {
-
+    @GET("/v1/html/home/list")
+    Observable<ApiResponse<HomeResp>> getHomeInfos();
 }

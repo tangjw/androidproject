@@ -3,7 +3,6 @@ package zonsim.tangjunwei.network.di;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -30,20 +29,10 @@ public class RetrofitModule {
         mBaseUrl = baseUrl;
     }
     
-    @Provides@Named("with_auth")
-    @Singleton
-    Retrofit provideRetrofit(@Named("with_authenticator") OkHttpClient okHttpClient, RxJava2CallAdapterFactory rxJava2CallAdapterFactory, GsonConverterFactory gsonConverterFactory) {
-        return new Retrofit.Builder()
-                .client(okHttpClient)
-                .baseUrl(mBaseUrl)
-                .addCallAdapterFactory(rxJava2CallAdapterFactory)
-                .addConverterFactory(gsonConverterFactory)
-                .build();
-    }
     
-    @Provides@Named("without_auth")
     @Singleton
-    Retrofit provideRetrofitNoAuth(@Named("without_authenticator") OkHttpClient okHttpClient, RxJava2CallAdapterFactory rxJava2CallAdapterFactory, GsonConverterFactory gsonConverterFactory) {
+    @Provides
+    Retrofit provideRetrofit(OkHttpClient okHttpClient, RxJava2CallAdapterFactory rxJava2CallAdapterFactory, GsonConverterFactory gsonConverterFactory) {
         return new Retrofit.Builder()
                 .client(okHttpClient)
                 .baseUrl(mBaseUrl)

@@ -3,8 +3,8 @@ package zonsim.tangjunwei.android.net;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import zonsim.tangjunwei.app.BaseAppComponent;
-import zonsim.tangjunwei.app.BaseAppModule;
+import zonsim.tangjunwei.network.di.TokenInterceptorModule;
+import zonsim.tangjunwei.network.token.TokenInterceptor;
 
 /**
  * desc
@@ -15,7 +15,10 @@ import zonsim.tangjunwei.app.BaseAppModule;
  */
 
 @Singleton
-@Component(dependencies = {BaseAppComponent.class})
+@Component(modules = {ApiServiceModule.class, TokenInterceptorModule.class})
 public interface ApiServiceComponent {
     ApiService getApiService();
+    
+    TokenInterceptor getTokenInterceptor();
+    
 }

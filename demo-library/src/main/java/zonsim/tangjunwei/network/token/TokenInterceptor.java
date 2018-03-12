@@ -3,12 +3,9 @@ package zonsim.tangjunwei.network.token;
 
 import java.io.IOException;
 
-import javax.inject.Inject;
-
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
-import zonsim.tangjunwei.app.BaseApp;
 import zonsim.tangjunwei.util.Strings;
 
 /**
@@ -17,10 +14,22 @@ import zonsim.tangjunwei.util.Strings;
  */
 public class TokenInterceptor implements Interceptor {
     
+    private String mToken;
+    
+    public TokenInterceptor(String token) {
+        mToken = token;
+    }
+    
+    public String getToken() {
+        return mToken;
+    }
+    
+    public void setToken(String token) {
+        mToken = token;
+    }
+    
     @Override
     public Response intercept(Chain chain) throws IOException {
-        
-        String mToken = BaseApp.getAuthToken();
         
         final Request originalRequest = chain.request();
         

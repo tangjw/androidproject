@@ -1,12 +1,9 @@
 package zonsim.tangjunwei.network.di;
 
 import android.app.Application;
-import android.content.Context;
-
 
 import java.io.File;
 
-import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -17,7 +14,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import zonsim.tangjunwei.app.BaseAppModule;
 import zonsim.tangjunwei.network.cookie.CookiesManager;
-import zonsim.tangjunwei.network.token.TokenAuthenticator;
 import zonsim.tangjunwei.network.token.TokenInterceptor;
 
 /**
@@ -28,18 +24,17 @@ import zonsim.tangjunwei.network.token.TokenInterceptor;
  * <a href="https://github.com/tangjw">Follow me</a>
  */
 
-@Module(includes = {BaseAppModule.class})
+@Module(includes = {BaseAppModule.class, TokenInterceptorModule.class})
 public class OkHttpClientModule {
     
-    Authenticator mAuthenticator;
+    private Authenticator mAuthenticator;
     
     public OkHttpClientModule(Authenticator authenticator) {
         mAuthenticator = authenticator;
     }
     
-    @Named("with_authenticator")
     @Provides
-    public OkHttpClient okHttpClient(
+    OkHttpClient okHttpClient(
             TokenInterceptor tokenInterceptor,
             Cache cache,
             HttpLoggingInterceptor logInterceptor,
@@ -54,27 +49,10 @@ public class OkHttpClientModule {
                 .build();
     }
     
-    @Named("without_authenticator")
     @Provides
-    public OkHttpClient okHttpClientNoAuth(
-            TokenInterceptor tokenInterceptor,
-            Cache cache,
-            HttpLoggingInterceptor logInterceptor,
-            CookiesManager cookiesManager) {
-        
-        return new OkHttpClient().newBuilder()
-                .addInterceptor(tokenInterceptor)
-                .cache(cache)
-                .addInterceptor(logInterceptor)
-                .cookieJar(cookiesManager)
-                .build();
-    }
-    
-    @Provides
-    public Cache cache(File cacheFile) {
+    Cache cache(File cacheFile) {
         return new Cache(cacheFile, 10 * 1000 * 1000); //10 MB
     }
-    
     
     @Singleton
     @Provides
@@ -85,13 +63,13 @@ public class OkHttpClientModule {
     }
     
     @Provides
-    public HttpLoggingInterceptor httpLoggingInterceptor() {
-        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+    HttpLoggingInterceptor httpLoggingInterceptor() {
+        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor(/*new HttpLoggingInterceptor.Logger() {
             @Override
             public void log(String message) {
                 //Timber.d(message);
             }
-        });
+        }*/);
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         return httpLoggingInterceptor;
     }
@@ -99,13 +77,8 @@ public class OkHttpClientModule {
     
     @Singleton
     @Provides
-    public CookiesManager provideCookiesManager(Application context) {
+    CookiesManager provideCookiesManager(Application context) {
         return new CookiesManager(context);
-    }
-    
-    @Provides
-    public TokenInterceptor provideTokenInterceptor() {
-        return new TokenInterceptor();
     }
     
 }

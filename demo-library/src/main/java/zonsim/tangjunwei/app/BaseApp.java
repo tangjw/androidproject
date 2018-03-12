@@ -1,5 +1,6 @@
 package zonsim.tangjunwei.app;
 
+import android.app.Activity;
 import android.app.Application;
 
 /**
@@ -17,5 +18,13 @@ public class BaseApp extends Application {
         super.onCreate();
         
         
+    }
+    
+    public static BaseApp get(Activity activity) {
+        return (BaseApp) activity.getApplication();
+    }
+    
+    public static String getAuthToken() {
+        return "token";
     }
 }

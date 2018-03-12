@@ -1,4 +1,4 @@
-package zonsim.tangjunwei.network;
+package zonsim.tangjunwei.network.api;
 
 /**
  * 接口Response 统一的最外层 包含code，message 和 T data 等

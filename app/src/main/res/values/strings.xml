@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">android-project</string>
+    <string name="iv_desc1">加载失败icon</string>
+    <string name="iv_desc2">没数据icon</string>
 </resources>

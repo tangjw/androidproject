@@ -3,11 +3,6 @@ package zonsim.tangjunwei.util;
 import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
 
-/**
- * ^-^
- * Created by tang-jw on 10/31.
- */
-
 public final class Strings {
     private Strings() {
     }

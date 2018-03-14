@@ -65,8 +65,10 @@ public class BaseObserver<T> implements Observer<ApiResponse<T>> {
     }
     
     protected void onFail(String msg) {
-        mView.hideProgressView();
-        mView.toastMsg(msg);
+        if (mView != null) {
+            //mView.hideProgressView();
+            mView.toastMsg(msg);
+        }
     }
     
     @Override

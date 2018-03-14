@@ -10,8 +10,12 @@ import zonsim.tangjunwei.util.Strings;
 
 /**
  * token 拦截器，为每次网络请求添加token
- * Created by tang-jw on 9/16.
+ * <p>
+ * Created by tangjunwei on 2018/3/11.
+ * <a href="mailto:tjwabc@gmail.com">Contact me</a>
+ * <a href="https://github.com/tangjw">Follow me</a>
  */
+
 public class TokenInterceptor implements Interceptor {
     
     private String mToken;

@@ -1,8 +1,13 @@
 package zonsim.tangjunwei.android.net.auth;
 
+import android.app.Application;
+
+import javax.inject.Named;
+
 import dagger.Module;
 import dagger.Provides;
-import zonsim.tangjunwei.android.net.ApiServiceModule;
+import okhttp3.OkHttpClient;
+import zonsim.tangjunwei.network.di.OkHttpClientModule;
 
 /**
  * desc
@@ -11,12 +16,17 @@ import zonsim.tangjunwei.android.net.ApiServiceModule;
  * <a href="mailto:tjwabc@gmail.com">Contact me</a>
  * <a href="https://github.com/tangjw">Follow me</a>
  */
-@Module(includes = {ApiServiceModule.class})
+@Module(includes = {OkHttpClientModule.class})
 public class TokenAuthenticatorModule {
     
-    @Provides
-    TokenAuthenticator tokenAuthenticator() {
-        return new TokenAuthenticator();
+    private final String mBaseUrl;
+    
+    public TokenAuthenticatorModule(String baseUrl) {
+        mBaseUrl = baseUrl;
     }
     
+    @Provides
+    TokenAuthenticator tokenAuthenticator(Application application, @Named("without_auth") OkHttpClient okHttpClient) {
+        return new TokenAuthenticator(mBaseUrl, application, okHttpClient);
+    }
 }

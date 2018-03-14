@@ -8,7 +8,6 @@ package zonsim.tangjunwei.network.api;
  * Created by tang-jw on 2018/3/6.
  */
 
-@SuppressWarnings("public")
 public class ApiResp<T> {
     
     private int code;

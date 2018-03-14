@@ -4,6 +4,7 @@ import android.app.Application;
 
 import java.io.File;
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -12,6 +13,7 @@ import okhttp3.Authenticator;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
+import timber.log.Timber;
 import zonsim.tangjunwei.app.BaseAppModule;
 import zonsim.tangjunwei.network.cookie.CookiesManager;
 import zonsim.tangjunwei.network.token.TokenInterceptor;
@@ -33,6 +35,9 @@ public class OkHttpClientModule {
         mAuthenticator = authenticator;
     }
     
+    public OkHttpClientModule() {
+    }
+    
     @Provides
     OkHttpClient okHttpClient(
             TokenInterceptor tokenInterceptor,
@@ -44,6 +49,18 @@ public class OkHttpClientModule {
                 .addInterceptor(tokenInterceptor)
                 .authenticator(mAuthenticator)
                 .cache(cache)
+                .addInterceptor(logInterceptor)
+                .cookieJar(cookiesManager)
+                .build();
+    }
+    
+    
+    @Named("without_auth")
+    @Singleton
+    @Provides
+    OkHttpClient okHttpClient1(HttpLoggingInterceptor logInterceptor, CookiesManager cookiesManager) {
+        
+        return new OkHttpClient().newBuilder()
                 .addInterceptor(logInterceptor)
                 .cookieJar(cookiesManager)
                 .build();
@@ -62,14 +79,15 @@ public class OkHttpClientModule {
         return file;
     }
     
+    @Singleton
     @Provides
     HttpLoggingInterceptor httpLoggingInterceptor() {
-        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor(/*new HttpLoggingInterceptor.Logger() {
+        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
             @Override
             public void log(String message) {
-                //Timber.d(message);
+                Timber.d(message);
             }
-        }*/);
+        });
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         return httpLoggingInterceptor;
     }

@@ -20,7 +20,7 @@ import zonsim.tangjunwei.network.api.ApiResponse;
 
 public interface ApiService {
     
-    @GET("/v1/html/home/list")
+    @GET("/v1/html/home/lists")
     Observable<ApiResponse<HomeResp>> getHomeInfos();
     
     @FormUrlEncoded

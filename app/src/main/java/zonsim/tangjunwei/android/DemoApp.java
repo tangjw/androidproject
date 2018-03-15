@@ -67,7 +67,6 @@ public class DemoApp extends BaseApp {
                 .retrofitModule(new RetrofitModule(mBaseUrl))
                 .schedulerProviderComponent(DaggerSchedulerProviderComponent.create())
                 .build();
-        mBaseUrl = baseUrl;
     }
     
     private void initLogger() {

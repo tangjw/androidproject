@@ -3,8 +3,6 @@ package zonsim.tangjunwei.android;
 import android.support.annotation.NonNull;
 import android.view.View;
 
-import java.util.concurrent.TimeUnit;
-
 import zonsim.tangjunwei.android.base.BaseTitleActivity;
 import zonsim.tangjunwei.android.net.entity.HomeResp;
 import zonsim.tangjunwei.network.observer.BaseObserver;
@@ -29,7 +27,7 @@ public class NewsActivity extends BaseTitleActivity {
         mTvTitle.setText("新闻资讯");
         showLoading(null);
         mApiService.getHomeInfos()
-                .delay(2000L, TimeUnit.MILLISECONDS)
+                //.delay(2000L, TimeUnit.MILLISECONDS)
                 .subscribeOn(mSchedulers.io())
                 .observeOn(mSchedulers.ui())
                 .subscribe(new BaseObserver<HomeResp>(this) {
@@ -47,3 +45,4 @@ public class NewsActivity extends BaseTitleActivity {
                 });
     }
 }
+

@@ -24,8 +24,8 @@ public class ToastUtils {
         }
         mToast.setDuration(length);
         mToast.setText(text);
-        
-        mToast.setGravity(Gravity.CENTER, mToast.getXOffset() / 2, 4 * mToast.getYOffset() / 5);
+    
+        mToast.setGravity(Gravity.BOTTOM, mToast.getXOffset() / 2, 4 * mToast.getYOffset() / 5);
         
         mToast.show();
     }

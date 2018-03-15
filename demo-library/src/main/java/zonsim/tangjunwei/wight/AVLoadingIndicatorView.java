@@ -22,7 +22,7 @@ public class AVLoadingIndicatorView extends View {
     
     private static final String TAG = "AVLoadingIndicatorView";
     
-    private static final LineScalePulseOutIndicator DEFAULT_INDICATOR = new LineScalePulseOutIndicator();
+    private static final BallSpinFadeLoaderIndicator DEFAULT_INDICATOR = new BallSpinFadeLoaderIndicator();
     
     private static final int MIN_SHOW_TIME = 500; // ms
     private static final int MIN_DELAY = 500; // ms

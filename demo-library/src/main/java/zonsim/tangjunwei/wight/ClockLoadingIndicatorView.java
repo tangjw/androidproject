@@ -57,6 +57,11 @@ public class ClockLoadingIndicatorView extends Indicator {
                 } else if (temp < mAngleValue) {
                     mHourAngleValue += (temp + 2 * Math.PI - mAngleValue) / 12;
                 }
+                if (mHourAngleValue > 2 * Math.PI) {
+                    mHourAngleValue -= 2 * Math.PI;
+                    System.out.println(mHourAngleValue + "===============");
+                }
+                    
                 mAngleValue = temp;
                 
                 postInvalidate();

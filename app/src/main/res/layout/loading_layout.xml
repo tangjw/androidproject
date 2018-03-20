@@ -15,8 +15,8 @@
 
         <zonsim.tangjunwei.wight.AVLoadingIndicatorView
             android:id="@+id/load_pb_loading"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_gravity="center"
             android:visibility="visible"/>
 

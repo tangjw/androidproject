@@ -64,7 +64,7 @@ public class ClockLoadingIndicatorView extends Indicator {
         });
         animator.setInterpolator(new LinearInterpolator());
         animators.add(animator);
-        return null;
+        return animators;
     }
     
     private float getMinY(float centerY, float radius) {

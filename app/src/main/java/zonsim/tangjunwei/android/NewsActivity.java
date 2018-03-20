@@ -4,8 +4,6 @@ import android.support.annotation.NonNull;
 import android.view.View;
 
 import zonsim.tangjunwei.android.base.BaseTitleActivity;
-import zonsim.tangjunwei.android.net.entity.HomeResp;
-import zonsim.tangjunwei.network.observer.BaseObserver;
 
 /**
  * desc
@@ -26,8 +24,8 @@ public class NewsActivity extends BaseTitleActivity {
         
         mTvTitle.setText("新闻资讯");
         showLoading(null);
-        mApiService.getHomeInfos()
-                //.delay(2000L, TimeUnit.MILLISECONDS)
+       /* mApiService.getHomeInfos()
+                .delay(20000L, TimeUnit.MILLISECONDS)
                 .subscribeOn(mSchedulers.io())
                 .observeOn(mSchedulers.ui())
                 .subscribe(new BaseObserver<HomeResp>(this) {
@@ -42,7 +40,7 @@ public class NewsActivity extends BaseTitleActivity {
                         super.onFail(msg);
                         showNetworkError();
                     }
-                });
+                });*/
     }
 }
 

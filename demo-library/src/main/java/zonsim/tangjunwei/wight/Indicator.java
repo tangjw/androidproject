@@ -30,7 +30,9 @@ public abstract class Indicator extends Drawable implements Animatable {
     private int alpha = 255;
     private boolean mHasAnimators;
     
-    private Paint mPaint = new Paint();
+    private Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    
+    
     
     public Indicator() {
         mPaint.setColor(Color.GRAY);
@@ -63,13 +65,14 @@ public abstract class Indicator extends Drawable implements Animatable {
     
     @Override
     public void setColorFilter(ColorFilter colorFilter) {
-        
+        mPaint.setColorFilter(colorFilter);
     }
     
     @Override
     public void draw(@NonNull Canvas canvas) {
         draw(canvas, mPaint);
     }
+    
     
     public abstract void draw(Canvas canvas, Paint paint);
     
@@ -87,8 +90,14 @@ public abstract class Indicator extends Drawable implements Animatable {
         if (isStarted()) {
             return;
         }
+    
+    
         startAnimators();
+    
+    
         invalidateSelf();
+    
+    
     }
     
     private void startAnimators() {
@@ -117,6 +126,9 @@ public abstract class Indicator extends Drawable implements Animatable {
         }
     }
     
+    /**
+     * 初始化 ValueAnimator 集合，是否含有动画
+     */
     private void ensureAnimators() {
         if (!mHasAnimators) {
             mAnimators = onCreateAnimators();
@@ -129,6 +141,11 @@ public abstract class Indicator extends Drawable implements Animatable {
         stopAnimators();
     }
     
+    /**
+     * ValueAnimator 集合里面是否已开始执行动画
+     *
+     * @return
+     */
     private boolean isStarted() {
         for (ValueAnimator animator : mAnimators) {
             if (animator.isStarted())

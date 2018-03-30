@@ -34,12 +34,12 @@ ext {
 
     // Sdk and tools
     minSdkVersion = 19
-    targetSdkVersion = 27
-    compileSdkVersion = 27
-    buildToolsVersion = '27.0.3'
+    targetSdkVersion = 26
+    compileSdkVersion = 26
+    buildToolsVersion = '26.0.3'
 
     // App dependencies
-    supportLibraryVersion = '27.1.0'
+    supportLibraryVersion = '26.1.0'
     constraintLayoutVersion = '1.0.2'
     junitVersion = '4.12'
     //guavaVersion = '18.0'

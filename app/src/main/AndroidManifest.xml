@@ -20,6 +20,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".NewsActivity"/>
+        <activity
+            android:name=".nestedscroll.ScrollingActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/DrawStatusBarTheme"
+            />
     </application>
 
 </manifest>
